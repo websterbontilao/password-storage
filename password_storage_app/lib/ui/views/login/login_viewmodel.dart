@@ -15,10 +15,6 @@ class LoginViewModel extends BaseViewModel {
     _loginCardYAxis = yAxis;
   }
 
-  set pageState (int state) {
-    _pageState = state;
-  }
-
   final NavigationService _navigationService = locator<NavigationService>();
 
   void navigateToDashboard() async {

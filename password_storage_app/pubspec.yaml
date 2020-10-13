@@ -40,7 +40,8 @@ dependencies:
   injectable: ^1.0.4
   flutter_hooks: ^0.12.0
   observable_ish:
-  
+  # Google fonts
+  google_fonts: ^1.0.0
 
 dev_dependencies:
   flutter_test:
