@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stacked/stacked.dart';
 import 'package:password_storage_app/constants.dart';
@@ -16,11 +17,9 @@ class LoginView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         body: Stack(
           children: <Widget>[
-            _HomeView(),
             _LoginForm(),
           ],
         ),
-        // floatingActionButton: FloatingActionButton(onPressed: () => model.navigateToDashboard()),
       ), 
       
       viewModelBuilder: () => LoginViewModel(),
@@ -28,7 +27,6 @@ class LoginView extends StatelessWidget {
   }
 }
 
-// The card when the user will try to login 
 class _LoginForm extends HookViewModelWidget<LoginViewModel> {
   _LoginForm({Key key}) : super(key: key, reactive: false);
 
@@ -37,46 +35,21 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
     BuildContext context,
     LoginViewModel model,
   ) {
-    if (model.pageState == 0) {
-      model.loginCardYAxis = MediaQuery.of(context).size.height;
-    }
-
-    return AnimatedContainer(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.6,
-      curve: Curves.fastLinearToSlowEaseIn,
-      duration: oneSecondDuration,
-      transform: Matrix4.translationValues(0, model.loginCardYAxis, 1),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only( 
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          )
-      ),
+    return Container(
+      color: commonColorGrey,
       child: Column(
         children: <Widget> [
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Spacer(),
               Container(
                 margin: EdgeInsets.only(
-                  top: 17,
+                  top: MediaQuery.of(context).size.height * 0.05,
                 ),
-                child: FlatButton (
-                  onPressed: (){ model.toggleLoginCard(context); },
-                  color: kDismissButtonCOlor,
-                  shape: CircleBorder (
-                    side: BorderSide(color: kDismissButtonCOlor),
-                  ),
-                  child: Text(
-                    "X",
-                    style: TextStyle(
-                      color: textLightColor,
-                      fontSize: fontSmall
-                    ),
-                  )
-                ),
+                child: FlatButton(
+                  onPressed: () => model.navigateToHome(),
+                  child: Icon(Icons.arrow_left),
+                )
               ),
             ],
           ),
@@ -90,7 +63,7 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
               "Use App Now",
               style: GoogleFonts.getFont(
                 defaultFont,
-                fontSize: fontLargest
+                fontSize: fontSizeLargest
               ),
               textAlign: TextAlign.left,
             ),
@@ -104,7 +77,9 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
             ),
             child: TextField(
               decoration: InputDecoration(
+                prefixIcon: Icon(Icons.perm_identity),
                 border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
                   borderRadius: const BorderRadius.all(
                     const Radius.circular(50),
                   ),
@@ -112,7 +87,7 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
                 filled: true,
                 hintStyle: GoogleFonts.getFont(
                   defaultFont,
-                  fontSize: fontSmall,
+                  fontSize: fontSizeDefault,
                 ),
                 hintText: "Email Address",
                 fillColor: Colors.white70
@@ -128,8 +103,9 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
             ),
             child: TextField(
               decoration: InputDecoration(
-                icon: Icon(Icons.settings),
+                prefixIcon: Icon(Icons.vpn_key),
                 border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
                   ),
@@ -137,9 +113,10 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
                 filled: true,
                 hintStyle: GoogleFonts.getFont(
                   defaultFont,
-                  fontSize: fontLarge,
+                  fontSize: fontSizeDefault,
                 ),
                 hintText: "Password",
+                fillColor: Colors.white70
               ),
             ),
           ),
@@ -160,59 +137,35 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
                 "Login",
                 style: TextStyle(
                   color: textLightColor,
-                  fontSize: fontSmall
+                  fontSize: fontSizeDefault
                 ),
               ),
               splashColor: kPrimaryLightColor,
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).viewInsets.bottom,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// The default display when the user opens the application without session
-class _HomeView extends HookViewModelWidget<LoginViewModel> {
-  _HomeView({Key key}) : super(key: key, reactive: false);
-
-  @override
-  Widget buildViewModelWidget(
-    BuildContext context,
-    LoginViewModel model,
-  ) {
-    return AnimatedContainer(
-      color: kBackgroundColor,
-      curve: Curves.fastLinearToSlowEaseIn,
-      duration: oneSecondDuration,
-      child: Column(
-        children: <Widget>[
-          Spacer(),
           Container(
-            margin: EdgeInsets.only(
-              left: 20,
-              right: 20,
-              bottom: 30,
-            ),
-            child: MaterialButton(
-              onPressed: () => model.toggleLoginCard(context),
-              color: kPrimaryColor,
-              minWidth: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.all(18),
-              splashColor: kPrimaryLightColor,
-              shape: StadiumBorder(),
+            child: FlatButton (
+              onPressed: (){ 
+                // TODO Call Login validation method here 
+              },
+              color: kBackgroundColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18),
+                side: BorderSide(color: kBackgroundColor),
+              ),
               child: Text(
-                "Get Started",
+                "Sign Up",
                 style: TextStyle(
-                  color: textLightColor,
-                  fontSize: fontSmall,
+                  color: textDarkColor,
+                  fontSize: fontSizeDefault
                 ),
               ),
+              splashColor: kBackgroundColor,
             ),
           ),
+          // SizedBox(
+          //   height: MediaQuery.of(context).viewInsets.bottom,
+          // ),
         ],
       ),
     );
