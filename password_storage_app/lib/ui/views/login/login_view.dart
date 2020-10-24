@@ -90,7 +90,7 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
                   fontSize: fontSizeDefault,
                 ),
                 hintText: "Email Address",
-                fillColor: Colors.white70
+                fillColor: commonColorWhite
               ),
             ),
           ),
@@ -102,9 +102,20 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
               right: 20,
             ),
             child: TextField(
+              obscureText: model.hidePassword,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.vpn_key),
+                suffixIcon: IconButton(
+                  icon: Icon(model.hidePassword == true ? Icons.visibility_off : Icons.visibility), 
+                  onPressed: () => model.toggleHidePassword(),
+                ),
                 border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(50),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
@@ -116,56 +127,68 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
                   fontSize: fontSizeDefault,
                 ),
                 hintText: "Password",
-                fillColor: Colors.white70
+                fillColor: commonColorWhite
               ),
             ),
           ),
           Container(
             margin: EdgeInsets.only(
-              top: 35,
-            ),
-            child: FlatButton (
-              onPressed: (){ 
-                // TODO Call Login validation method here 
-              },
-              color: kPrimaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18),
-                side: BorderSide(color: kPrimaryColor),
-              ),
-              child: Text(
-                "Login",
-                style: TextStyle(
-                  color: textLightColor,
-                  fontSize: fontSizeDefault
-                ),
-              ),
-              splashColor: kPrimaryLightColor,
+              top: 20,
             ),
           ),
           Container(
-            child: FlatButton (
-              onPressed: (){ 
-                // TODO Call Login validation method here 
+            margin: EdgeInsets.only(
+              top: 10,
+              left: 20,
+              right: 20
+            ),
+            child: MaterialButton(
+              onPressed: () {
+                // On Pressed function here
               },
-              color: kBackgroundColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18),
-                side: BorderSide(color: kBackgroundColor),
-              ),
+              color: kPrimaryColor,
+              minWidth: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.all(18),
+              splashColor: kPrimaryLightColor,
+              shape: StadiumBorder(),
               child: Text(
-                "Sign Up",
-                style: TextStyle(
-                  color: textDarkColor,
-                  fontSize: fontSizeDefault
+                "Login",
+                style: GoogleFonts.getFont(
+                  defaultFont,
+                  fontSize: fontSizeDefault,
+                  color: textLightColor,
                 ),
               ),
-              splashColor: kBackgroundColor,
             ),
           ),
-          // SizedBox(
-          //   height: MediaQuery.of(context).viewInsets.bottom,
-          // ),
+          Container(
+            margin: EdgeInsets.only(
+              top: 10,
+              left: 20,
+              right: 20
+            ),
+            child: MaterialButton(
+              onPressed: () => model.navigateToSignUp(),
+              color: kBackgroundColor,
+              minWidth: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.all(18),
+              splashColor: kBackgroundColor,
+              shape: StadiumBorder(),
+              child: Text(
+                "Sign Up",
+                style: GoogleFonts.getFont(
+                  defaultFont,
+                  fontSize: fontSizeDefault,
+                  color: textDarkColor,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              top: 10
+            ),
+          ),
         ],
       ),
     );

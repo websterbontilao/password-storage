@@ -13,7 +13,7 @@ final textLightColor = Color(0xFFFFFFFF);
 final textDarkColor = Color(0xFF212121);
 
 // Common Colors
-final commonColorWhite = Color(0xFFFFFFFF);
+final commonColorWhite = Colors.white70;
 final commonColorGrey = Color(0xFFe0e0e0);
 
 final oneSecondDuration = Duration(milliseconds: 1000);
