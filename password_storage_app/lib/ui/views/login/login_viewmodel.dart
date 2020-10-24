@@ -24,7 +24,7 @@ class LoginViewModel extends BaseViewModel {
     await _navigationService.navigateTo(Routes.HomeViewRoute);
   }
 
-  void toggleHidePassword(){
+  void togglePasswordVisibility(){
     _hidePassword = !_hidePassword;
     notifyListeners();
   }

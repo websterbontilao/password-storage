@@ -107,7 +107,7 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
                 prefixIcon: Icon(Icons.vpn_key),
                 suffixIcon: IconButton(
                   icon: Icon(model.hidePassword == true ? Icons.visibility_off : Icons.visibility), 
-                  onPressed: () => model.toggleHidePassword(),
+                  onPressed: () => model.togglePasswordVisibility(),
                 ),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
