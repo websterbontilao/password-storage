@@ -42,6 +42,13 @@ dependencies:
   observable_ish:
   # Google fonts
   google_fonts: ^1.0.0
+  cloud_firestore: ^0.12.9+5
+  # Firebase Core Flutter SDK
+  firebase_core: ^0.4.0+9
+  # Firebase Google Analytics
+  firebase_analytics: ^5.0.2
+  # Firebase Auth
+  firebase_auth: ^0.16.0
 
 dev_dependencies:
   flutter_test:
