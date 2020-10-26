@@ -15,6 +15,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: <Widget>[
             _LoginForm(),
@@ -39,7 +40,7 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
       color: kBackgroundColor,
       child: Column(
         children: <Widget> [
-          Column(
+          Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
@@ -48,7 +49,7 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
                 ),
                 child: FlatButton(
                   onPressed: () => model.navigateToHome(),
-                  child: Icon(Icons.arrow_left),
+                  child: Icon(Icons.keyboard_backspace),
                 )
               ),
             ],
@@ -188,6 +189,9 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
             margin: EdgeInsets.only(
               top: 10
             ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).viewInsets.bottom,
           ),
         ],
       ),

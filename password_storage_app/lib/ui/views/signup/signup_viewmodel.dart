@@ -14,14 +14,6 @@ class SignUpViewModel extends BaseViewModel {
     await _navigationService.navigateTo(Routes.LoginViewRoute);
   }
 
-  void navigateToSignUp() async {
-    // TODO add Signup logic here
-  }
-
-  void navigateToHome() async {
-    await _navigationService.navigateTo(Routes.HomeViewRoute);
-  }
-
   void togglePasswordVisibility(){
     _hidePassword = !_hidePassword;
     notifyListeners();

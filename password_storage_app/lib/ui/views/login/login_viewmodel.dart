@@ -17,7 +17,7 @@ class LoginViewModel extends BaseViewModel {
   // TODO Validate User
 
   void navigateToSignUp() async {
-    // TODO add Signup logic here
+    await _navigationService.navigateTo(Routes.SignUpViewRoute);
   }
 
   void navigateToHome() async {

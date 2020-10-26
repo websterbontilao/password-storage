@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "916463721218",
+    "firebase_url": "https://password-storage-f8a33.firebaseio.com",
+    "project_id": "password-storage-f8a33",
+    "storage_bucket": "password-storage-f8a33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916463721218:android:fcb1a15b0cbd9ac1d4001b",
+        "android_client_info": {
+          "package_name": "com.example.password_storage_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916463721218-ru5l6qd0ah043rc5jgleo4h56fms16rb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF_R3GaBXZd_w8syl7cYbAZjLlfXPvmh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916463721218-ru5l6qd0ah043rc5jgleo4h56fms16rb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

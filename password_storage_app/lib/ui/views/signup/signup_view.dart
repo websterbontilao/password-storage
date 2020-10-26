@@ -14,9 +14,10 @@ class SignUpView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: <Widget>[
-            _LoginForm(),
+            _SignUpForm(),
           ],
         ),
       ), 
@@ -26,8 +27,8 @@ class SignUpView extends StatelessWidget {
   }
 }
 
-class _LoginForm extends HookViewModelWidget<SignUpViewModel> {
-  _LoginForm({Key key}) : super(key: key, reactive: false);
+class _SignUpForm extends HookViewModelWidget<SignUpViewModel> {
+  _SignUpForm({Key key}) : super(key: key, reactive: false);
 
   @override
   Widget buildViewModelWidget(
@@ -38,7 +39,7 @@ class _LoginForm extends HookViewModelWidget<SignUpViewModel> {
       color: kBackgroundColor,
       child: Column(
         children: <Widget> [
-          Column(
+          Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
@@ -46,29 +47,14 @@ class _LoginForm extends HookViewModelWidget<SignUpViewModel> {
                   top: MediaQuery.of(context).size.height * 0.05,
                 ),
                 child: FlatButton(
-                  onPressed: () => model.navigateToHome(),
-                  child: Icon(Icons.arrow_left),
+                  onPressed: () => model.navigateToLogin(),
+                  child: Icon(Icons.keyboard_backspace),
                 )
               ),
             ],
           ),
-          Container(
-            padding: EdgeInsets.only(
-              top: 13,
-              right: 0,
-              left: 0
-            ),
-            child: Text(
-              "Use App Now",
-              style: GoogleFonts.getFont(
-                defaultFont,
-                fontSize: fontSizeLargest
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
           Spacer(),
-          // Email Field
+          // First Name
           Container(
             margin: EdgeInsets.only(
               left: 20,
@@ -77,6 +63,58 @@ class _LoginForm extends HookViewModelWidget<SignUpViewModel> {
             child: TextField(
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.perm_identity),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: const BorderRadius.all(
+                    const Radius.circular(50),
+                  ),
+                ),
+                filled: true,
+                hintStyle: GoogleFonts.getFont(
+                  defaultFont,
+                  fontSize: fontSizeDefault,
+                ),
+                hintText: "First Name",
+                fillColor: commonColorWhite
+              ),
+            ),
+          ),
+          // Last Name
+          Container(
+            margin: EdgeInsets.only(
+              top: 10,
+              left: 20,
+              right: 20,
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.perm_identity),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: const BorderRadius.all(
+                    const Radius.circular(50),
+                  ),
+                ),
+                filled: true,
+                hintStyle: GoogleFonts.getFont(
+                  defaultFont,
+                  fontSize: fontSizeDefault,
+                ),
+                hintText: "Last Name",
+                fillColor: commonColorWhite
+              ),
+            ),
+          ),
+          // Email Address
+          Container(
+            margin: EdgeInsets.only(
+              top: 10,
+              left: 20,
+              right: 20,
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.email),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: const BorderRadius.all(
@@ -135,9 +173,11 @@ class _LoginForm extends HookViewModelWidget<SignUpViewModel> {
               top: 20,
             ),
           ),
+          Spacer(),
+          // Register Button
           Container(
             margin: EdgeInsets.only(
-              top: 10,
+              top: MediaQuery.of(context).size.height * 0.10,
               left: 20,
               right: 20
             ),
@@ -151,7 +191,7 @@ class _LoginForm extends HookViewModelWidget<SignUpViewModel> {
               splashColor: kPrimaryLightColor,
               shape: StadiumBorder(),
               child: Text(
-                "Login",
+                "Register",
                 style: GoogleFonts.getFont(
                   defaultFont,
                   fontSize: fontSizeDefault,
@@ -162,31 +202,11 @@ class _LoginForm extends HookViewModelWidget<SignUpViewModel> {
           ),
           Container(
             margin: EdgeInsets.only(
-              top: 10,
-              left: 20,
-              right: 20
-            ),
-            child: MaterialButton(
-              onPressed: () => model.navigateToSignUp(),
-              color: kBackgroundColor,
-              minWidth: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.all(18),
-              splashColor: kBackgroundColor,
-              shape: StadiumBorder(),
-              child: Text(
-                "Sign Up",
-                style: GoogleFonts.getFont(
-                  defaultFont,
-                  fontSize: fontSizeDefault,
-                  color: textDarkColor,
-                ),
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(
               top: 10
             ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).viewInsets.bottom,
           ),
         ],
       ),
