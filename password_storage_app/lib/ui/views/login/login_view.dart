@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:password_storage_app/ui/widgets/button_widget.dart';
+import 'package:password_storage_app/ui/widgets/textfield_widget.dart';
 import 'package:stacked/stacked.dart';
 import 'package:password_storage_app/constants.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
@@ -71,119 +73,56 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
           ),
           Spacer(),
           // Email Field
+          TextFieldWidget(
+            prefixIcon: Icon(
+              Icons.perm_identity,
+              size: iconSize,
+              color: commonColorGrey,
+            ),
+            labelText: "Email Address"
+          ),
           Container(
             margin: EdgeInsets.only(
-              left: 20,
-              right: 20,
-            ),
-            child: TextField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.perm_identity),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: const BorderRadius.all(
-                    const Radius.circular(50),
-                  ),
-                ),
-                filled: true,
-                hintStyle: GoogleFonts.getFont(
-                  defaultFont,
-                  fontSize: fontSizeDefault,
-                ),
-                hintText: "Email Address",
-                fillColor: commonColorWhite
-              ),
+              top: 5,
             ),
           ),
           // Password Field
-          Container(
-            margin: EdgeInsets.only(
-              top: 10,
-              left: 20,
-              right: 20,
+          TextFieldWidget(
+            obscureText: model.hidePassword,
+            prefixIcon: Icon(
+              Icons.lock,
+              size: iconSize,
             ),
-            child: TextField(
-              obscureText: model.hidePassword,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.vpn_key),
-                suffixIcon: IconButton(
-                  icon: Icon(model.hidePassword == true ? Icons.visibility_off : Icons.visibility), 
-                  onPressed: () => model.togglePasswordVisibility(),
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(50),
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(50),
-                  ),
-                ),
-                filled: true,
-                hintStyle: GoogleFonts.getFont(
-                  defaultFont,
-                  fontSize: fontSizeDefault,
-                ),
-                hintText: "Password",
-                fillColor: commonColorWhite
-              ),
+            suffixIcon: Icon(
+              model.hidePassword == true ? Icons.visibility : Icons.visibility_off,
+              size: iconSize,
+              color: commonColorGrey,
             ),
+            suffixIconOnPressed: () => model.togglePasswordVisibility(),
+            labelText: "Password",
           ),
           Container(
             margin: EdgeInsets.only(
-              top: 20,
+              top: 30,
             ),
+          ),
+          ButtonWidget(
+            title: "Login",
+            color: kPrimaryColor,
+            splashColor: kPrimaryLightColor,
+            fontColor: textLightColor,
+            onPressed: () { /* TODO Add login logic */},
           ),
           Container(
             margin: EdgeInsets.only(
-              top: 10,
-              left: 20,
-              right: 20
-            ),
-            child: MaterialButton(
-              onPressed: () {
-                // On Pressed function here
-              },
-              color: kPrimaryColor,
-              minWidth: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.all(18),
-              splashColor: kPrimaryLightColor,
-              shape: StadiumBorder(),
-              child: Text(
-                "Login",
-                style: GoogleFonts.getFont(
-                  defaultFont,
-                  fontSize: fontSizeDefault,
-                  color: textLightColor,
-                ),
-              ),
+              top: 10
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(
-              top: 10,
-              left: 20,
-              right: 20
-            ),
-            child: MaterialButton(
-              onPressed: () => model.navigateToSignUp(),
-              color: kBackgroundColor,
-              minWidth: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.all(18),
-              splashColor: kBackgroundColor,
-              shape: StadiumBorder(),
-              child: Text(
-                "Sign Up",
-                style: GoogleFonts.getFont(
-                  defaultFont,
-                  fontSize: fontSizeDefault,
-                  color: textDarkColor,
-                ),
-              ),
-            ),
+          ButtonWidget(
+            title: "Sign Up",
+            color: kBackgroundColor,
+            splashColor: kBackgroundColor,
+            onPressed: () => model.navigateToSignUp(),
           ),
           Container(
             margin: EdgeInsets.only(
