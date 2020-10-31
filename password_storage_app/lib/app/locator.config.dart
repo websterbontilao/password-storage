@@ -10,6 +10,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../services/counter_service.dart';
 import '../services/third_party_services_module.dart';
+import '../services/user_service.dart';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -25,6 +26,7 @@ GetIt $initGetIt(
   gh.lazySingleton<DialogService>(() => thirdPartyServicesModule.dialogService);
   gh.lazySingleton<NavigationService>(
       () => thirdPartyServicesModule.navigationService);
+  gh.lazySingleton<UserService>(() => UserService());
   return get;
 }
 

@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -15,6 +16,7 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Firebase.initializeApp();
     return ViewModelBuilder<LoginViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         resizeToAvoidBottomInset: false,
@@ -74,6 +76,7 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
           Spacer(),
           // Email Field
           TextFieldWidget(
+            controller: model.emailAddress,
             prefixIcon: Icon(
               Icons.perm_identity,
               size: iconSize,
@@ -88,6 +91,7 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
           ),
           // Password Field
           TextFieldWidget(
+            controller: model.password,
             obscureText: model.hidePassword,
             prefixIcon: Icon(
               Icons.lock,
@@ -111,7 +115,7 @@ class _LoginForm extends HookViewModelWidget<LoginViewModel> {
             color: kPrimaryColor,
             splashColor: kPrimaryLightColor,
             fontColor: textLightColor,
-            onPressed: () { /* TODO Add login logic */},
+            onPressed: () => model.onPressedLoginButtion(),
           ),
           Container(
             margin: EdgeInsets.only(

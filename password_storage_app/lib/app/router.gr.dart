@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import '../ui/views/dashboard/dashboard_view.dart';
@@ -46,6 +47,7 @@ class Router extends RouterBase {
       );
     },
     LoginView: (data) {
+      Firebase.initializeApp();
       return MaterialPageRoute<dynamic>(
         builder: (context) => const LoginView(),
         settings: data,

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginService {
-  Firestore _db = Firestore.instance;
+  // Firestore _db = Firestore.instance;
 
 
   Future<bool> verifyUserLogin() {

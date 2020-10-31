@@ -4,6 +4,8 @@ import 'package:password_storage_app/constants.dart';
 
 class TextFieldWidget extends StatelessWidget {
 
+  final controller;
+
   final String labelText;
   final String fontFamily;
 
@@ -24,6 +26,7 @@ class TextFieldWidget extends StatelessWidget {
 
 
   TextFieldWidget({
+    this.controller,
     this.prefixIcon,
     this.suffixIcon,
     this.labelText,
@@ -48,6 +51,7 @@ class TextFieldWidget extends StatelessWidget {
         right: 20,
       ),
       child: TextField(
+        controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
           prefixIcon: prefixIcon != null ? IconButton(
